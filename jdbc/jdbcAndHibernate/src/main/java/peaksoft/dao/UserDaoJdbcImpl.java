@@ -16,7 +16,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public void createUsersTable() throws SQLException {
-        String SQL = "CREATE TABLE personTable(" +
+        String SQL = "CREATE TABLE userTable(" +
                 "  id serial primary key,"
                 + "name VARCHAR(150) NOT NULL,"
                 + "lastName varchar(150) not null,"
@@ -35,8 +35,7 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public void dropUsersTable() throws SQLException {
 
-        String SQl = "drop table personTable";
-
+        String SQl = "drop table userTable";
         try (Connection connection = Util.connection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(SQl);
@@ -46,7 +45,7 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public void saveUser(String name, String lastName, byte age) {
 
-        String sql = "insert into personTable(name,lastName, age) values (?,?,?)";
+        String sql = "insert into userTable(name,lastName, age) values (?,?,?)";
 
         try (Connection connection = Util.connection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -62,7 +61,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        String sql = "delete from personTable where id=?";
+        String sql = "delete from userTable where id=?";
         try (Connection connection = Util.connection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, id);
@@ -76,7 +75,7 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User>list= new ArrayList<>();
-        String sql = "select * from personTable";
+        String sql = "select * from userTable";
         try (Connection connection = Util.connection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)){
@@ -97,7 +96,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
     @Override
     public void cleanUsersTable() {
-        String sql = "delete from personTable";
+        String sql = "delete from userTable";
         try (Connection connection = Util.connection();
         Statement statement = connection.createStatement()){
             statement.executeUpdate(sql);
