@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        UserDaoJdbcImpl userDaoJdbc = new UserDaoJdbcImpl();
 
         // реализуйте алгоритм здесь
         UserDaoJdbcImpl userDaoJdbc1 = new UserDaoJdbcImpl();
